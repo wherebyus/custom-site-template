@@ -14,7 +14,7 @@ DB_NAME=${DB_NAME//[\\\/\.\<\>\:\"\'\|\?\!\*-]/}
 mkdir -p ~/.ssh
 touch ~/.ssh/known_hosts
 IFS=$'\n'
-for KNOWN_HOST in $(cat "ssh/known_hosts"); do
+for KNOWN_HOST in $(cat "${VVV_PATH_TO_SITE}/ssh/known_hosts"); do
   if ! grep -Fxq "$KNOWN_HOST" ~/.ssh/known_hosts; then
       echo "Adding host to SSH known_hosts for user 'root': $(echo $KNOWN_HOST |cut -d '|' -f1)"
       echo $KNOWN_HOST >> ~/.ssh/known_hosts
