@@ -12,4 +12,12 @@ else
 	git fetch
 	git reset origin/master
 	git checkout -- .
+	cd wp-content; npm install
 fi
+
+# TO DO - check for presence of .sql,
+# refine if necessary and then import
+# into vagrant
+
+# TO DO - new WP Engine script looks promising:
+# https://github.com/cftp/vvv-init/blob/master/build-wpengine.sh
