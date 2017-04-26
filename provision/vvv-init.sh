@@ -9,19 +9,6 @@ WP_TYPE=`get_config_value 'wp_type' "single"`
 DB_NAME=`get_config_value 'db_name' "${VVV_SITE_NAME}"`
 DB_NAME=${DB_NAME//[\\\/\.\<\>\:\"\'\|\?\!\*-]/}
 
-
-# Set up known hosts to move private git repo
-mkdir -p ~/.ssh
-touch ~/.ssh/known_hosts
-IFS=$'\n'
-for KNOWN_HOST in $(cat "${VVV_PATH_TO_SITE}/ssh/known_hosts"); do
-  if ! grep -Fxq "$KNOWN_HOST" ~/.ssh/known_hosts; then
-      echo "Adding host to SSH known_hosts for user 'root': $(echo $KNOWN_HOST |cut -d '|' -f1)"
-      echo $KNOWN_HOST >> ~/.ssh/known_hosts
-  fi
-done
-
-
 # Make a database, if we don't already have one
 echo -e "\nCreating database '${DB_NAME}' (if it's not already there)"
 mysql -u root --password=root -e "CREATE DATABASE IF NOT EXISTS ${DB_NAME}"
