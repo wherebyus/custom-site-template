@@ -1,7 +1,7 @@
 # Dev Environment Bootstrap for WhereBy.Us
 (Requires access to a private repo to fully work, but we'll make our instructions public.)
 
-This site bootstrap is designed to be used with [Varying Vagrants Vagrant](varyingvagrantvagrants.org) and frodo, a private github repo which has our WordPress themes and plugins. 
+This site bootstrap is designed to be used with [Varying Vagrants Vagrant](varyingvagrantvagrants.org) and frodo, an internal (private) github repo which has our WordPress themes and plugins. 
 
 This documentation was forked from [Code for the People](https://github.com/cftp/vvv-init), now part of Automattic.
 
@@ -16,10 +16,4 @@ Followed by `vagrant up --provision`.
 6. To get the latest theme and plugins code, cd into `www/wbu` and run `bash seed.sh` to download these separately.
 7. Then you can visit:
 
-
 http://wbu.dev/
-
-
-### To-Do
-- [ ] Add a way to import the SQL 
-- [ ] Import a better WP Engine build script
