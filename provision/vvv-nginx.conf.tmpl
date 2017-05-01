@@ -10,4 +10,14 @@ server {
     set          $upstream {upstream};
 
     include      /etc/nginx/nginx-wp-common.conf;
+
+    location ~ ^/wp-content/uploads/sites/2/(.*)$ {
+        expires 48h;
+        rewrite ^/wp-content/uploads/sites/2/(.*)$ http://thenewtropic.com/wp-content/uploads/sites/2/$1;
+    }
+    location ~ ^/wp-content/uploads/sites/3/(.*)$ {
+        expires 48h;
+        rewrite ^/wp-content/uploads/sites/3/(.*)$ http://theevergrey.com/wp-content/uploads/sites/3/$1;
+    }
+    server_name_in_redirect     off;
 }

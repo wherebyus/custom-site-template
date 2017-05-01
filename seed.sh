@@ -1,4 +1,4 @@
-REPO_URL="https://github.com/wherebyus/son-of-frodo.git"
+REPO_URL="https://github.com/wherebyus/frodo.git"
 
 # go to public_html, it must exist
 if [ ! -d public_html ]
