@@ -62,7 +62,8 @@ cd ${VVV_PATH_TO_SITE}
 # go to public_html, it must exist
 if [ ! -d public_html ]
 then
-  echo "Not in the web directory"
+  echo "Didn't find a public_html directory, so I'm exiting early."
+  exit 1
 else
   echo "Attempting to populate content"
   cd public_html
@@ -77,26 +78,34 @@ else
   cd ${VVV_PATH_TO_SITE}
   cd public_html/wp-content/plugins
   git clone ${NEWS_URL}
-  cd ${NEWS_NAME}
-  git init
-  git remote add origin ${NEWS_URL}
-  git fetch
-  git reset origin/master
-  git checkout -- .
-  npm install
-  composer install
+  if [[ 0 != $? ]]; then
+    echo -e "Failed to clone the Newsletters repository."
+  else
+    cd ${NEWS_NAME}
+    git init
+    git remote add origin ${NEWS_URL}
+    git fetch
+    git reset origin/master
+    git checkout -- .
+    npm install
+    composer install
+  fi
 
   cd ${VVV_PATH_TO_SITE}
   cd public_html/wp-content/plugins
   git clone ${REFER_URL}
-  cd ${REFER_NAME}
-  git init
-  git remote add origin ${REFER_URL}
-  git fetch
-  git reset origin/master
-  git checkout -- .
-  npm install
-  composer install
+  if [[ 0 != $? ]]; then
+    echo -e "Failed to clone the Referrals repository."
+  else
+    cd ${REFER_NAME}
+    git init
+    git remote add origin ${REFER_URL}
+    git fetch
+    git reset origin/master
+    git checkout -- .
+    npm install
+    composer install
+  fi
 fi
 
 # TO DO - check for presence of .sql,
