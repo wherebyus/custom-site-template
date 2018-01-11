@@ -69,15 +69,12 @@ else
   cd public_html
   git init
   git remote add origin ${FRODO_URL}
-  if [[ 0 != $? ]]; then
-    echo -e "Frodo already exists. Continuing..."
-  else
-    git fetch
-    git reset origin/master
-    git checkout -- .
-    npm install
-    composer install
-  fi
+
+  git fetch
+  git reset origin/master
+  git checkout -- .
+  npm install
+  composer install
 
   cd ${VVV_PATH_TO_SITE}
   cd public_html/wp-content/plugins
