@@ -1,8 +1,10 @@
 FRODO_URL="https://github.com/wherebyus/frodo.git"
+
+WBA_NAME="wherebyapp"
+WBA_URL="https://github.com/wherebyus/wherebyapp.git"
+
 NEWS_NAME="wbu-newsletters"
 NEWS_URL="https://github.com/wherebyus/wbu-newsletters.git"
-REFER_NAME="wbu-referrals"
-REFER_URL="https://github.com/wherebyus/wbu-referrals.git"
 
 cd ${VVV_PATH_TO_SITE}
 # go to public_html, it must exist
@@ -34,15 +36,19 @@ else
 
 	cd ${VVV_PATH_TO_SITE}
 	cd public_html/wp-content/plugins
-	git clone ${REFER_URL}
-	cd ${REFER_NAME}
+	git clone ${WBA_URL}
+	cd ${WBA_NAME}
 	git init
-	git remote add origin ${REFER_URL}
+	git remote add origin ${WBA_URL}
 	git fetch
 	git reset origin/master
 	git checkout -- .
 	npm install
 	composer install
+
+	cd wp-content/plugins
+	git clone https://github.com/wherebyus/wbu-newsletters
+	git clone https://github.com/wherebyus/wherebyapp
 fi
 
 # TO DO - check for presence of .sql,

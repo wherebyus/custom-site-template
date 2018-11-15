@@ -12,8 +12,8 @@ DB_NAME=${DB_NAME//[\\\/\.\<\>\:\"\'\|\?\!\*-]/}
 FRODO_URL="https://github.com/wherebyus/frodo.git"
 NEWS_NAME="wbu-newsletters"
 NEWS_URL="https://github.com/wherebyus/wbu-newsletters.git"
-REFER_NAME="wbu-referrals"
-REFER_URL="https://github.com/wherebyus/wbu-referrals.git"
+WBA_NAME="wherebyapp"
+WBA_NAME="https://github.com/wherebyus/wherebyapp.git"
 
 
 # Make a database, if we don't already have one
@@ -78,6 +78,22 @@ else
 
   cd ${VVV_PATH_TO_SITE}
   cd public_html/wp-content/plugins
+  git clone ${WBA_NAME}
+  if [[ 0 != $? ]]; then
+    echo -e "Failed to clone the WhereByApp repository."
+  else
+    cd ${WBA_NAME}
+    git init
+    git remote add origin ${WBA_NAME}
+    git fetch
+    git reset origin/master
+    git checkout -- .
+    npm install
+    composer install
+  fi
+
+  cd ${VVV_PATH_TO_SITE}
+  cd public_html/wp-content/plugins
   git clone ${NEWS_URL}
   if [[ 0 != $? ]]; then
     echo -e "Failed to clone the Newsletters repository."
@@ -92,21 +108,6 @@ else
     composer install
   fi
 
-  cd ${VVV_PATH_TO_SITE}
-  cd public_html/wp-content/plugins
-  git clone ${REFER_URL}
-  if [[ 0 != $? ]]; then
-    echo -e "Failed to clone the Referrals repository."
-  else
-    cd ${REFER_NAME}
-    git init
-    git remote add origin ${REFER_URL}
-    git fetch
-    git reset origin/master
-    git checkout -- .
-    npm install
-    composer install
-  fi
 fi
 
 # TO DO - check for presence of .sql,
