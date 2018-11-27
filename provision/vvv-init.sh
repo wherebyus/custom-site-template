@@ -1,5 +1,5 @@
 clear
-g#!/usr/bin/env bash
+#!/usr/bin/env bash
 # Provision WordPress Stable
 
 # fetch the first host as the primary domain. If none is available, generate a default using the site name
