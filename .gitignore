@@ -1,5 +1,6 @@
 .DS_Store
 /log/
+/provision/vvv-nginx.conf
 /public_html
 mysql.sql
 dev_mysql.sql
